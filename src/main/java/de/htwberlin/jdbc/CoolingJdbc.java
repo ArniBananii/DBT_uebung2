@@ -1,6 +1,11 @@
 package de.htwberlin.jdbc;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -30,8 +35,22 @@ public class CoolingJdbc implements ICoolingJdbc {
   @Override
   public List<String> getSampleKinds() {
     L.info("getSampleKinds: start");
-    // TODO Auto-generated method stub
-    return null;
+    String sql = "SELECT TEXT FROM SAMPLEKIND";
+    List<String> sampleKinds = new LinkedList<>();
+    try(PreparedStatement ps = useConnection().prepareStatement(sql)){
+      try(ResultSet rs = ps.executeQuery()){
+        while(rs.next()){
+          sampleKinds.add(rs.getString("TEXT"));
+        }
+      }catch( DataException e){
+        L.info("", e);
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    Collections.sort(sampleKinds);
+    L.info(sampleKinds.toString());
+    return sampleKinds;
   }
 
   @Override

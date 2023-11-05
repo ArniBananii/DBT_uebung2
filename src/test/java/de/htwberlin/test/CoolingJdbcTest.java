@@ -40,7 +40,7 @@ public class CoolingJdbcTest {
   private static final Logger L = LoggerFactory.getLogger(CoolingJdbcTest.class);
   private static IDatabaseTester dbTester;
   private static IDatabaseConnection dbTesterCon = null;
-  private static String dataDirPath = "de/htwberlin/test/data/jdbc/";
+  private static String dataDirPath = "de/htwberlin/test/data/jdbc/"; //de/htwberlin/test/data/jdbc/
   private static URL dataFeedUrl = ClassLoader.getSystemResource(dataDirPath);
   private static IDataSet feedDataSet = null;
 
@@ -91,6 +91,7 @@ public class CoolingJdbcTest {
    * @throws SQLException
    */
   @org.junit.Test
+  //TODO: LocalDate 24.03.2017 sample existiert nicht und müsste angelegt / Test geändert werden
   public void bbbfindSampleById1() throws SQLException {
     Sample sample = cj.findSampleById(1);
     LocalDate d = LocalDate.of(2017, 3, 24);
