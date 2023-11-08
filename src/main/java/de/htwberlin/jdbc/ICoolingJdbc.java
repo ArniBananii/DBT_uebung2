@@ -1,6 +1,7 @@
 package de.htwberlin.jdbc;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import de.htwberlin.domain.Sample;
@@ -30,7 +31,7 @@ public interface ICoolingJdbc {
    * @throws CoolingSystemException
    *           wenn keine Probe mit der id existiert.
    */
-  Sample findSampleById(Integer sampleId);
+  Sample findSampleById(Integer sampleId) throws SQLException;
 
   /**
    * Fuegt einen neuen Proben-Datensatz in die Datenbank ein. Das Ablaufdatum
@@ -46,7 +47,7 @@ public interface ICoolingJdbc {
    * @throws CoolingSystemException
    *           wenn keine Probenart mit der sampleKindId existiert.
    */
-  void createSample(Integer sampleId, Integer sampleKindId);
+  void createSample(Integer sampleId, Integer sampleKindId) throws SQLException;
 
   /**
    * Entsorgt alle Proben eines Tabletts.
